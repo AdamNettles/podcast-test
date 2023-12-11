@@ -1,5 +1,6 @@
 import yaml
 import xml.etree.ElementTree as xml_tree
+import xml
 
 with open('feed.yaml', 'r') as feed:
     feed_yaml = yaml.safe_load(feed)
@@ -39,4 +40,6 @@ for item in feed_yaml['item']:
 
 
 output_tree = xml_tree.ElementTree(rss_element)
+xml.etree.ElementTree.indent(output_tree, space='  ', level=0)
 output_tree.write('podcast.xml', encoding='UTF-8', xml_declaration=True)
+
