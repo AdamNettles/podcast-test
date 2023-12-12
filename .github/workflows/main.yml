@@ -1,3 +1,4 @@
+name:  Generate Workflow Feeds
 on: [push]
 jobs:
   build:
@@ -5,20 +6,5 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyyaml
-      - name: run feed generator
-        run: python feed.py
-      - name: push repo
-        run: |
-          git config user.name adam.nettles
-          git config user.email adam_r_nettles@proton.me
-          git add .
-          git commit -m "Generated Commit"
-          git push
+      - name: Run Feed Generator
+        uses: AdamNettles/another-action@main
